@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:nasachallenge/screen/map_screen.dart';
+import 'package:nasachallenge/witgests/crop_card.dart';
 import 'package:nasachallenge/witgests/custon_card.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://vhdoekfqjwwvsklzhzca.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoZG9la2Zxand3dnNrbHpoemNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc2MzA3MTcsImV4cCI6MjA0MzIwNjcxN30.PKihHezo0djNd1_XNEqeWDwYaxMsESOSN7w4DXGgXhM',
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,12 +25,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const DashboardScreen(),
+      home: DashboardScreen(key: DashboardScreen.dashboardKey),
     );
   }
 }
 
 class DashboardScreen extends StatefulWidget {
+  static final GlobalKey<_DashboardScreenState> dashboardKey = GlobalKey();
+
   const DashboardScreen({super.key});
 
   @override
@@ -36,13 +46,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String viento = '15 km/h';
   String estadoBateria = '60%';
 
-  void updateValues() {
-    // Actualiza los valores aquí, por ejemplo:
+  void updateValues(String newAreaTotal, String newTiempoTotal,
+      String newViento, String newEstadoBateria) {
     setState(() {
-      areaTotal = '100m²';
-      tiempoTotal = '150 min';
-      viento = '20 km/h';
-      estadoBateria = '80%';
+      areaTotal = newAreaTotal;
+      tiempoTotal = newTiempoTotal;
+      viento = newViento;
+      estadoBateria = newEstadoBateria;
     });
   }
 
@@ -113,14 +123,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Stack(
                     children: [
                       const MapScreen(),
-                      Positioned(
-                        right: 8,
-                        top: 8,
-                        child: ElevatedButton(
-                          onPressed: updateValues,
-                          child: const Text('Actualizar Valores'),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -132,7 +134,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: const Center(
                       child: Text(
                         'Parte inferior columna 2',
-                        style: TextStyle(fontSize: 18, color: Colors.white), // Cambié a blanco
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white), // Cambié a blanco
                       ),
                     ),
                   ),
@@ -146,19 +150,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
             flex: 3,
             child: Column(
               children: [
-                // Parte superior
+                // Parte superior con los CropCard
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    color: Colors.green.shade200,
-                    child: const Center(
-                      child: Text(
-                        'Parte superior columna 3',
-                        style: TextStyle(fontSize: 18, color: Colors.white), // Cambié a blanco
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          "PRODUCTOS",
+                          style: TextStyle(
+                            fontWeight:
+                                FontWeight.bold, // Para poner el texto en negrita
+                            fontSize: 24.0,
+                          ),
+                        ),
                       ),
-                    ),
+                      CropCard(
+                        imagePath: 'assets/images/ajo.jpeg',
+                        name: 'Ajo',
+                        use: 'Condimento y alimento',
+                        msnm: '0 - 3000 msnm',
+                        temperature: '12 a 20 °C',
+                        humidity: '60% - 80%',
+                      ),
+                      CropCard(
+                        imagePath: 'assets/images/cebolla.jpeg',
+                        name: 'Cebolla',
+                        use: 'Condimento y alimento',
+                        msnm: '0 - 3500 msnm',
+                        temperature: '18 a 23 °C',
+                        humidity: '65% - 80%',
+                      ),
+                      CropCard(
+                        imagePath: 'assets/images/algodon.jpeg',
+                        name: 'Algodón',
+                        use: 'Textil',
+                        msnm: '0 - 2000 msnm',
+                        temperature: '20 a 30 °C',
+                        humidity: '55% - 70%',
+                      ),
+                      CropCard(
+                        imagePath: 'assets/images/choclo.jpeg',
+                        name: 'Choclo',
+                        use: 'Alimento',
+                        msnm: '0 - 2800 msnm',
+                        temperature: '15 a 25 °C',
+                        humidity: '50% - 80%',
+                      ),
+                      // Agrega más CropCard aquí según sea necesario...
+                    ],
                   ),
                 ),
+
                 // Parte inferior
                 Expanded(
                   flex: 1,
@@ -167,7 +211,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: const Center(
                       child: Text(
                         'Parte inferior columna 3',
-                        style: TextStyle(fontSize: 18, color: Colors.white), // Cambié a blanco
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
