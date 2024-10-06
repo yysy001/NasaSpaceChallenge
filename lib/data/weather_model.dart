@@ -11,8 +11,10 @@ class Weather {
   final double presion;
   final double altitud;
   final double humedad;
+  final double temperatura;
+  final double aire;
 
-  Weather(this.id, this.name, this.log, this.lat,this.presion, this.altitud, this.humedad);
+  Weather(this.id, this.name, this.log, this.lat,this.presion, this.altitud, this.humedad,this.temperatura, this.aire);
 
   factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
   Map<String, dynamic> toJson() => _$WeatherToJson(this);

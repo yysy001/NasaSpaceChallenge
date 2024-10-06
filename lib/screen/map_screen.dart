@@ -238,112 +238,151 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ),
           // Mostrar datos del clima en la parte superior
-          Positioned(
-            top: 16,
-            left: 16,
-            right: 16,
-            child: StreamBuilder<List<Weather>>(
-              stream: _repository.getAllStudents(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  Weather wt = snapshot.data!.first; // Muestra el primer dato
+Positioned(
+  top: 16,
+  left: 16,
+  right: 16,
+  child: StreamBuilder<List<Weather>>(
+    stream: _repository.getAllStudents(), // Cambia este método según tu implementación
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        Weather wt = snapshot.data!.first; // Toma el primer dato de la lista
 
-                  // Actualiza la posición si ha cambiado
-                  LatLng newPosition = LatLng(wt.lat, wt.log);
-                  if (myPosition == null ||
-                      (myPosition!.latitude != newPosition.latitude ||
-                          myPosition!.longitude != newPosition.longitude)) {
-                    myPosition = newPosition; // Actualiza la posición actual
-                    addNewMarker2(wt.lat, wt.log);
-                  }
+        // Actualiza la posición si ha cambiado
+        LatLng newPosition = LatLng(wt.lat, wt.log);
+        if (myPosition == null ||
+            (myPosition!.latitude != newPosition.latitude ||
+                myPosition!.longitude != newPosition.longitude)) {
+          myPosition = newPosition; // Actualiza la posición actual
+          addNewMarker2(wt.lat, wt.log); // Añade un nuevo marcador en el mapa
+        }
 
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+        return Column(
+          children: [
+            // Primer Card con name, lat, y log
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.airplanemode_active, color: Colors.blue),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${wt.name}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.center, // Centrar verticalmente
-                        mainAxisAlignment: MainAxisAlignment
-                            .spaceBetween, // Espacio entre elementos
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(Icons.airplanemode_active,
-                                  color: Colors.blue),
-                              const SizedBox(width: 8),
-                              Text(
-                                '${wt.name}',
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.map, color: Colors.red),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Lat: ${wt.lat}',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.location_on,
-                                  color: Colors.green),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Log: ${wt.log}',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.water, color: Colors.blue),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Humedad: ${wt.humedad} %',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.thermostat, color: Colors.red),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Temperatura: ${wt.presion} °C', // Asegúrate de que la temperatura esté en tu modelo
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.check, color: Colors.green),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Altitud: ${wt.altitud} m',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        const Icon(Icons.map, color: Colors.red),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Lat: ${wt.lat}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
                     ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                }
-                return const CircularProgressIndicator();
-              },
+                    Row(
+                      children: [
+                        const Icon(Icons.location_on, color: Colors.green),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Log: ${wt.log}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+
+            const SizedBox(height: 16), // Espacio entre los dos Cards
+
+            // Segundo Card con humedad, presión, altitud, temperatura y aire
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.water, color: Colors.blue),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Humedad: ${wt.humedad} %',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.check, color: Colors.red),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Presión: ${wt.presion}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.align_vertical_top_outlined, color: Colors.green),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Altitud: ${wt.altitud} m',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.thermostat, color: Colors.orange),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Temperatura: ${wt.temperatura} °C',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.air, color: Colors.blue),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Aire: ${wt.altitud}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      } else if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}');
+      }
+      return const CircularProgressIndicator(); // Indicador de carga mientras llegan los datos
+    },
+  ),
+),
+
 
           // Lista de puntos
           Positioned(

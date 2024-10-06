@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nasachallenge/screen/map_screen.dart';
+import 'package:nasachallenge/weatherapi/homepage.dart';
 import 'package:nasachallenge/witgests/crop_card.dart';
 import 'package:nasachallenge/witgests/custon_card.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -129,16 +130,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Parte inferior
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    color: Colors.blue.shade400,
-                    child: const Center(
-                      child: Text(
-                        'Parte inferior columna 2',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white), // Cambié a blanco
-                      ),
-                    ),
+                  child: Stack(
+                  children: [
+                    const Homepage(),
+                  ],
                   ),
                 ),
               ],
