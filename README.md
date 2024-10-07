@@ -1,7 +1,24 @@
-# nasachallenge
+### 1. Flutter Application
 
-A new Flutter project.
+The mobile app/dashboard was developed using Flutter and allows farmers to visualize real-time data collected by the drone. The app has been tested on **Android** and the **web**.
 
-## Getting Started
+**Flutter Repository**: [Link to the Flutter Repository](https://github.com/yysy001/NasaSpaceChallenge)
 
-execute: flutter pub run build_runner watch
+#### Instructions to run the application:
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/yysy001/NasaSpaceChallenge
+
+2. Go to the project directory
+   ```bash
+   cd NasaSpaceChallenge
+
+3. Install the dependencies:
+   ```bash
+   flutter pub get
+   
+   flutter pub run build_runner watch
+
+4. Run the application
+   ```bash
+   flutter run
