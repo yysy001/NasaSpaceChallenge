@@ -76,7 +76,7 @@ Widget _buildWeatherWidget() {
         Text(
           "CLIMA DE HOY",
           style: TextStyle(
-            fontSize: 32,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
             color: Colors.green, // Color verde para hacer énfasis
           ),
@@ -86,13 +86,13 @@ Widget _buildWeatherWidget() {
           children: [
             Icon(
               Icons.location_on,
-              size: 50,
+              size: 20,
               color: Colors.green, // Color verde para ícono
             ),
             Text(
               response!.location!.name ?? "",
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -100,7 +100,7 @@ Widget _buildWeatherWidget() {
             Text(
               response!.location!.country ?? "",
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -117,7 +117,7 @@ Widget _buildWeatherWidget() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.thermostat_outlined,
                     label: "Temperatura",
@@ -126,7 +126,7 @@ Widget _buildWeatherWidget() {
                 ),
                 SizedBox(height: 10),
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.water_drop,
                     label: "Humedad",
@@ -135,7 +135,7 @@ Widget _buildWeatherWidget() {
                 ),
                 SizedBox(height: 10),
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.speed,
                     label: "Presión",
@@ -150,7 +150,7 @@ Widget _buildWeatherWidget() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.air,
                     label: "Viento",
@@ -159,7 +159,7 @@ Widget _buildWeatherWidget() {
                 ),
                 SizedBox(height: 10),
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.cloud,
                     label: "Precipitación",
@@ -168,7 +168,7 @@ Widget _buildWeatherWidget() {
                 ),
                 SizedBox(height: 10),
                 Container(
-                  width: 300,
+                  width: 250,
                   child: WeatherCard(
                     icon: Icons.thermostat,
                     label: "Sensación Térmica",

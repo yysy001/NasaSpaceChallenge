@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Dashboard',
+      debugShowCheckedModeBanner: false,
+      title: 'Chacka360',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -43,8 +44,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   // Variables para los valores de las tarjetas
   String areaTotal = '80m²';
-  String tiempoTotal = '120 min';
-  String viento = '15 km/h';
+  String tiempoTotal = '10 min';
+  String viento = '23 km/h';
   String estadoBateria = '60%';
 
   void updateValues(String newAreaTotal, String newTiempoTotal,
@@ -61,7 +62,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Chacka360'),  // Nombre de la aplicación
+        ClipOval(
+        child: Image.asset(
+          'assets/images/logo.jpeg',  // Ruta del logo
+          height: 40,          // Ajusta la altura según tus necesidades
+          width: 40,           // Asegúrate de que el ancho sea igual que la altura para un círculo
+          fit: BoxFit.cover,   // Para asegurar que la imagen cubra el círculo
+        ),
+      ),
+          ],
+        ),
       ),
       body: Row(
         children: [
@@ -131,9 +145,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Expanded(
                   flex: 1,
                   child: Stack(
-                  children: [
-                    const Homepage(),
-                  ],
+                    children: [
+                      const Homepage(),
+                    ],
                   ),
                 ),
               ],
@@ -155,8 +169,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         child: Text(
                           "PRODUCTOS",
                           style: TextStyle(
-                            fontWeight:
-                                FontWeight.bold, // Para poner el texto en negrita
+                            fontWeight: FontWeight
+                                .bold, // Para poner el texto en negrita
                             fontSize: 24.0,
                           ),
                         ),
@@ -204,9 +218,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Container(
                     color: Colors.green.shade400,
                     child: const Center(
-                      child: Text(
-                        'Parte inferior columna 3',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      child: Image(
+                        image: AssetImage(
+                            'assets/images/mapa.jpeg'), // Cambia la ruta a tu imagen
+                        width:
+                            450, // Ajusta el ancho de la imagen según tus necesidades
+                        height:
+                            450, // Ajusta la altura de la imagen según tus necesidades
+                        fit: BoxFit
+                            .contain, // Ajusta el modo de ajuste según tus preferencias
                       ),
                     ),
                   ),

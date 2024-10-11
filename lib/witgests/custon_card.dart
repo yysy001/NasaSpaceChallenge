@@ -22,25 +22,25 @@ class CustomCard extends StatelessWidget {
         title: Text(
           title,
           style: const TextStyle(
-            fontSize: 50,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white, // Título en blanco
           ),
         ),
         subtitle: Padding(
-          padding: const EdgeInsets.only(top: 80.0), // Espacio debajo del título
+          padding: const EdgeInsets.only(top: 40.0), // Espacio debajo del título
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinea ícono a la izquierda y texto a la derecha
             children: [
               Row(
                 children: [
-                  Icon(icon, size: 80, color: iconColor), // Ícono a la izquierda, en blanco
+                  Icon(icon, size: 50, color: iconColor), // Ícono a la izquierda, en blanco
                 ],
               ),
               Text(
                 value,
                 style: const TextStyle(
-                  fontSize: 40, // Aumenta el tamaño del valor
+                  fontSize: 20, // Aumenta el tamaño del valor
                   color: Colors.white, // Cambia el color del valor a blanco
                 ),
               ),

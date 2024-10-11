@@ -72,6 +72,8 @@ flutter:
     - assets/images/cebolla.jpeg
     - assets/images/choclo.jpeg
     - assets/images/frijol.jpeg
+    - assets/images/mapa.jpeg
+    - assets/images/logo.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

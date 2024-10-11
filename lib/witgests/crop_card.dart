@@ -24,22 +24,22 @@ class CropCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       elevation: 5,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 12), // Reducido
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0), // Reducido
         child: Row(
           children: [
             // Imagen
             ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(6.0), // Reducido
               child: Image.asset(
                 imagePath,
-                height: 100,
-                width: 100,
+                height: 80, // Reducido
+                width: 80, // Reducido
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16),
+            SizedBox(width: 12), // Reducido
             // Column para el nombre y uso
             Expanded(
               child: Column(
@@ -49,19 +49,19 @@ class CropCard extends StatelessWidget {
                   Text(
                     name,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16, // Reducido
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 4), // Reducido
                   // Botón de uso
                   TextButton(
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.green,
-                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12), // Reducido
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(6.0), // Reducido
                       ),
                     ),
                     onPressed: () {
@@ -69,7 +69,7 @@ class CropCard extends StatelessWidget {
                     },
                     child: Text(
                       use,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 10), // Reducido
                     ),
                   ),
                 ],
@@ -81,10 +81,10 @@ class CropCard extends StatelessWidget {
                 // Ficha técnica con icono MSNM
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Color del botón
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    backgroundColor: Colors.blue,
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8), // Reducido
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(6.0), // Reducido
                     ),
                   ),
                   onPressed: () {
@@ -92,23 +92,23 @@ class CropCard extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.cloud, color: Colors.white), // Ícono para MSNM
+                      Icon(Icons.cloud, color: Colors.white, size: 8), // Tamaño del ícono reducido
                       SizedBox(width: 4),
                       Text(
                         'MSNM: $msnm',
-                        style: TextStyle(color: Colors.white), // Color del texto
+                        style: TextStyle(color: Colors.white, fontSize: 8), // Reducido
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 4), // Reducido
                 // Ficha técnica con icono Temperatura
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red, // Color del botón
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    backgroundColor: Colors.red,
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8), // Reducido
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(6.0), // Reducido
                     ),
                   ),
                   onPressed: () {
@@ -116,23 +116,23 @@ class CropCard extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.thermostat, color: Colors.white), // Ícono para Temperatura
+                      Icon(Icons.thermostat, color: Colors.white, size: 8), // Tamaño del ícono reducido
                       SizedBox(width: 4),
                       Text(
                         'Temperatura: $temperature',
-                        style: TextStyle(color: Colors.white), // Color del texto
+                        style: TextStyle(color: Colors.white, fontSize: 8), // Reducido
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 4), // Reducido
                 // Ficha técnica con icono Humedad
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green, // Color del botón
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    backgroundColor: Colors.green,
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8), // Reducido
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(6.0), // Reducido
                     ),
                   ),
                   onPressed: () {
@@ -140,11 +140,11 @@ class CropCard extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.water, color: Colors.white), // Ícono para Humedad
+                      Icon(Icons.water, color: Colors.white, size: 8), // Tamaño del ícono reducido
                       SizedBox(width: 4),
                       Text(
                         'Humedad: $humidity',
-                        style: TextStyle(color: Colors.white), // Color del texto
+                        style: TextStyle(color: Colors.white, fontSize: 8), // Reducido
                       ),
                     ],
                   ),

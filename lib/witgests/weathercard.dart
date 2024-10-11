@@ -14,18 +14,18 @@ class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(5),
         child: Row(
           children: [
             Icon(
               icon,
-              size: 50,
+              size: 20,
               color: Colors.green, // Color principal verde
             ),
             SizedBox(width: 16),
@@ -35,7 +35,7 @@ class WeatherCard extends StatelessWidget {
                 Text(
                   label,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 10,
                     fontWeight: FontWeight.w600,
                     color: Colors.grey[700],
                   ),
@@ -44,7 +44,7 @@ class WeatherCard extends StatelessWidget {
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),

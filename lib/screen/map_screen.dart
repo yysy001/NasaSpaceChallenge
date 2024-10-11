@@ -46,7 +46,7 @@ class _MapScreenState extends State<MapScreen> {
           initialWeather = weatherList.first; // Guardar el primer Weather
           myPosition = LatLng(initialWeather!.lat,
               initialWeather!.log); // Actualizar la posición del dron
-
+          myPosition = LatLng(-16.388973,-71.535255);
           // Verificar si ya hay un marcador del dron
           if (markers.isEmpty || markers[0].point != myPosition) {
             addMarker(myPosition!,
@@ -180,7 +180,7 @@ class _MapScreenState extends State<MapScreen> {
           // Mapa interactivo
           FlutterMap(
             options: MapOptions(
-              initialCenter: myPosition!,
+              initialCenter: LatLng(-16.388973,-71.535255),
               initialZoom: 18,
               minZoom: 5,
               maxZoom: 25,
@@ -266,38 +266,38 @@ Positioned(
               ),
               elevation: 5,
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.airplanemode_active, color: Colors.blue),
+                        const Icon(Icons.airplanemode_active, color: Colors.blue,size: 8),
                         const SizedBox(width: 8),
                         Text(
                           '${wt.name}',
                           style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 10, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.map, color: Colors.red),
+                        const Icon(Icons.map, color: Colors.red,size: 8),
                         const SizedBox(width: 8),
                         Text(
                           'Lat: ${wt.lat}',
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 10),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.location_on, color: Colors.green),
+                        const Icon(Icons.location_on, color: Colors.green,size: 8),
                         const SizedBox(width: 8),
                         Text(
                           'Log: ${wt.log}',
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 10),
                         ),
                       ],
                     ),
@@ -321,51 +321,51 @@ Positioned(
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.water, color: Colors.blue),
+                        const Icon(Icons.water, color: Colors.blue,size: 10),
                         const SizedBox(width: 8),
                         Text(
-                          'Humedad: ${wt.humedad} %',
-                          style: const TextStyle(fontSize: 16),
+                          'H: ${wt.humedad} %',
+                          style: const TextStyle(fontSize: 8),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.check, color: Colors.red),
+                        const Icon(Icons.check, color: Colors.red,size: 10),
                         const SizedBox(width: 8),
                         Text(
-                          'Presión: ${wt.presion}',
-                          style: const TextStyle(fontSize: 16),
+                          'P: ${wt.presion}',
+                          style: const TextStyle(fontSize: 8),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.align_vertical_top_outlined, color: Colors.green),
+                        const Icon(Icons.align_vertical_top_outlined, color: Colors.green,size: 10),
                         const SizedBox(width: 8),
                         Text(
-                          'Altitud: ${wt.altitud} m',
-                          style: const TextStyle(fontSize: 16),
+                          'Alt: ${wt.altitud} m',
+                          style: const TextStyle(fontSize: 8),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.thermostat, color: Colors.orange),
+                        const Icon(Icons.thermostat, color: Colors.orange,size: 10),
                         const SizedBox(width: 8),
                         Text(
-                          'Temperatura: ${wt.temperatura} °C',
-                          style: const TextStyle(fontSize: 16),
+                          'Temp: ${wt.temperatura} °C',
+                          style: const TextStyle(fontSize: 8),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.air, color: Colors.blue),
+                        const Icon(Icons.air, color: Colors.blue,size: 10),
                         const SizedBox(width: 8),
                         Text(
-                          'Aire: ${wt.altitud}',
-                          style: const TextStyle(fontSize: 16),
+                          'Air: ${wt.altitud}',
+                          style: const TextStyle(fontSize: 8),
                         ),
                       ],
                     ),
@@ -385,27 +385,33 @@ Positioned(
 
 
           // Lista de puntos
-          Positioned(
-            left: 16,
-            bottom: -20,
-            child: Container(
-              width: 280,
-              height: 400,
-              child: ListView.builder(
-                itemCount: points.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 2,
-                    child: ListTile(
-                      title: Text(index == 0 ? 'Dron' : 'Punto ${index}'),
-                      subtitle: Text(
-                          'Lat: ${points[index].latitude}, Lon: ${points[index].longitude}'),
-                    ),
-                  );
-                },
-              ),
+Positioned(
+  left: 16,
+  bottom: -180,
+  child: Container(
+    width: 220,
+    height: 300,
+    child: ListView.builder(
+      itemCount: points.length,
+      itemBuilder: (context, index) {
+        return Card(
+          elevation: 2,
+          child: ListTile(
+            title: Text(
+              index == 0 ? 'Dron' : 'Punto ${index}',
+              style: TextStyle(fontSize: 8), // Ajusta el tamaño de la fuente aquí
+            ),
+            subtitle: Text(
+              'Lat: ${points[index].latitude}, Lon: ${points[index].longitude}',
+              style: TextStyle(fontSize: 5), // Ajusta el tamaño de la fuente aquí
             ),
           ),
+        );
+      },
+    ),
+  ),
+),
+
         ],
       ),
     );
